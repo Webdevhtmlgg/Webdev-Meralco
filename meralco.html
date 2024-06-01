@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Webdev Meralco Billing System</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 30px;
+        background-image:url('e.jpg') ;
+        background-size: cover;
+    }
+    form {
+        margin-bottom: 50px;
+    }
+    input {
+        padding: 5px;
+        margin-right: 10px;
+        font-size: 100px;
+    }
+    button {
+        padding: 5px 10px;
+        cursor: pointer;
+        max-height: 40%;
+        font-size: 100px;
+    }
+    #billResult {
+        font-weight: roman;
+        margin-top: 20px;
+        font-size: 100px;
+        background-image:url('y.jpg');
+        background-size:cover;
+    }
+     h1 {
+       font-size: 100px;
+       right:1000px;
+     }
+     label {
+       font-size: 100px;
+     }
+</style>
+</head>
+<body>
+<h1> Webdev Meralco Billing System</h1>
+<form id="billingForm">
+    <label for="customerName">Customer Name:</label>
+    <input type="text" id="customerName" placeholder="Enter Customer Name"><br><br>
+    <label for="kWhInput">Enter Kilowatt-hours Used:</label>
+    <input type="number" id="kWhInput" placeholder="Enter kWh"><br><br>
+    <button type="submit">Calculate Bill</button>
+</form>
+<div id="billResult"></div>
+
+<script>
+    const billingForm = document.getElementById('billingForm');
+    const customerNameInput = document.getElementById('customerName');
+    const kWhInput = document.getElementById('kWhInput');
+    const billResult = document.getElementById('billResult');
+
+    billingForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const customerName = customerNameInput.value;
+        const kWhUsed = parseFloat(kWhInput.value);
+        const ratePerKWh = 10; // Example rate per kilowatt-hour
+
+        const totalBill = kWhUsed * ratePerKWh;
+        billResult.innerHTML = `
+            <h2>Receipt</h2>
+            <p>Customer Name: ${customerName}</p>
+            <p>Total Bill: PHP ${totalBill.toFixed(2)}</p>
+        `;
+    });
+</script>
+</body>
+</html>
